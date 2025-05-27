@@ -33,63 +33,47 @@ body {
 
 /* Contenido del editor */
 .editor-content {
-  background-color: #1e1e1e;
+  background: #1e1e1e;
+  padding: 15px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-pre {
-  background-color: transparent !important;
-  border: none;
-  margin: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* Colores de sintaxis */
-.string {
-  color: #ce9178;
-}
-
-/* Botón de cambio de tema */
-#btn-design-toggle {
-  color: #569cd6 !important;
-}
-
-#btn-design-toggle:hover {
-  color: #4ec9b0 !important;
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-  .nav-tabs .nav-link {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-  }
-  
-  pre {
-    font-size: 0.9rem;
-  }
-}
-
-
-
-
-
-
-
-/* Asegura que solo el contenido activo sea visible */
 .tab-content {
   display: none;
-  height: calc(100vh - 50px); /* Ajusta según tu barra de pestañas */
-  overflow: auto;
 }
 
 .tab-content.active {
   display: block;
 }
 
-/* Estilo para pestañas activas */
-.nav-link.active {
-  background-color: #1e1e1e !important;
-  color: #569cd6 !important;
-  border-left: 3px solid #569cd6 !important;
+/* Sintaxis coloreada */
+.string {
+  color: #ce9178; /* Color naranja para strings */
+}
+
+.keyword {
+  color: #569cd6; /* Color azul para keywords */
+}
+
+.comment {
+  color: #6a9955; /* Color verde para comentarios */
+}
+
+/* Estilo para el botón derecho */
+.editor-tabs {
+  display: flex;
+  position: relative; /* Para posicionar el botón derecho */
+}
+
+.tab-right {
+  margin-left: auto; /* Empuja el botón a la derecha */
+  background-color: #252526;
+  color: #569cd6; /* Azul similar al resaltado de código */
+  border-left: 1px solid #1e1e1e; /* Separador visual */
+}
+
+.tab-right:hover {
+  background-color: #2d2d2d;
+  color: #4ec9b0; /* Verde-azulado al hover */
 }
