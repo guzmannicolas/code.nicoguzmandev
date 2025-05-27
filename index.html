@@ -6,78 +6,8 @@
   <title>Portfolio - Tu Nombre</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: #0d0d0d;
-      overflow-x: hidden;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    canvas#stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    header {
-      text-align: center;
-      padding-top: 15vh;
-    }
-
-    h1 span {
-      display: block;
-    }
-
-    .btn-custom {
-      margin: 10px;
-      background-color: #6c5ce7;
-      color: white;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 10;
-    }
-
-    nav .nav-link {
-      color: white !important;
-    }
-
-    section {
-      padding: 100px 20px;
-    }
-    .aurora-text {
-    font-size: 4rem;
-    font-weight: bold;
-    background: linear-gradient(270deg, #00f5d4, #00bbf9, #8338ec, #ff006e, #fb5607, #ffbe0b);
-    background-size: 1200% 1200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: aurora 10s ease infinite;
-   }
-
-  @keyframes aurora {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-}
-  </style>
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/script.js"></script>
 </head>
 <body>
   <canvas id="stars"></canvas>

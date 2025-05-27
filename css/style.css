@@ -1,4 +1,3 @@
-<style>
     body {
       margin: 0;
       padding: 0;
@@ -48,4 +47,24 @@
     section {
       padding: 100px 20px;
     }
-    
+    .aurora-text {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(270deg, #00f5d4, #00bbf9, #8338ec, #ff006e, #fb5607, #ffbe0b);
+    background-size: 1200% 1200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aurora 10s ease infinite;
+   }
+
+    @keyframes aurora {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}

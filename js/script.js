@@ -1,4 +1,4 @@
- <script>
+<script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
 
@@ -82,5 +82,3 @@
       document.querySelector("#contacto h2").textContent = t.contacto;
     }
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
