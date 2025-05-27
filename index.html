@@ -1,146 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Page Title -->
-  <title>Portfolio Dual Mode</title>
-  
-  <!-- External CSS -->
-  <!-- Bootstrap CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Nico Guzman</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Fira Code Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Custom CSS -->
-  <!-- Code Theme (enabled by default) -->
-  <link rel="stylesheet" href="css/code-theme.css" id="code-theme">
-  <!-- Design Theme (disabled by default) -->
-  <link rel="stylesheet" href="css/design-theme.css" id="design-theme" disabled>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/script.js" defer></script>
 </head>
+<body>
+  <canvas id="stars"></canvas>
 
-<body class="bg-dark">
-  <!-- Main Application Container -->
-  <div class="container-fluid vh-100 d-flex flex-column p-0" id="app">
-    <!-- ============ CODE INTERFACE ============ -->
-    <div class="code-interface flex-grow-1 d-flex flex-column">
-      
-      <!-- Editor Navigation Tabs -->
-      <!-- Desktop Version -->
-      <nav class="navbar navbar-dark bg-black px-3 py-0 d-none d-lg-block">
-        <div class="container-fluid p-0">
-          <ul class="nav nav-tabs border-0 w-100">
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#" data-tab="home">home.js</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-tab="about">about-me.js</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-tab="projects">projects.js</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-tab="contact">contact.html</a>
-            </li>
-
-            
-            <li class="nav-item ms-auto">
-              <a class="nav-link text-primary" href="#" id="btn-design-toggle">
-                <i class="fas fa-palette me-1"></i>Versión Diseño
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <!-- Mobile Version with Hamburger Menu -->
-      <nav class="navbar navbar-dark bg-black px-3 py-0 editor-navbar">
-        <div class="container-fluid p-0">
-          <!-- Hamburger Menu Button (Mobile Only) -->
-          <button class="navbar-toggler ms-auto d-lg-none" type="button" 
-                  data-bs-toggle="collapse" data-bs-target="#editorTabs">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <!-- Collapsible Tab Container -->
-          <div class="collapse navbar-collapse" id="editorTabs">
-            <div class="editor-tabs">
-              <div class="tab active" data-tab="home">home.js</div>
-              <div class="tab " data-tab="about">about-me.js</div>
-              <div class="tab" data-tab="projects">projects.js</div>
-              <div class="tab" data-tab="contact">contact.html</div>
-              <div class="tab tab-right" id="btn-design-toggle">Versión Diseño</div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Editor Content Area -->
-      <div class="editor-content flex-grow-1 overflow-auto">
-        
-
-        <!-- Home Tab Content -->
-        <div class="tab-content h-100" id="home">
-          <pre class="h-100 m-0 p-3"><code class="language-javascript">// Contenido Home.js...</code></pre>
-        </div>
-
-        <!-- About Me Tab Content -->
-        <div class="tab-content h-100 active" id="about">
-          <pre class="h-100 m-0 p-3"><code class="language-javascript">
-// Davide Simone
-> Front-end developer
-
-// my number
-const telephoneNum = <span class="string">"392 86 08 006"</span>;
-
-// my e-mail
-const email = <span class="string">"davide_simone1996@proton.me"</span>;
-
-// you can also see it on my Github page
-const githubLink = <span class="string">"https://github.com/daveinthahood"</span>;
-
-// you can also see my project on Behance
-const behanceLink = <span class="string">"https://www.behance.net/davidefemale"</span>;
-
-// you can check my Linkedin Page
-const linkedinPage = <span class="string">"https://www.linkedin.com/ln/davide-simone-a2833619a/"</span>;</code></pre>
-        </div>
-        
-        <!-- Projects Tab Content -->
-        <div class="tab-content h-100" id="projects">
-          <pre class="h-100 m-0 p-3"><code class="language-javascript">// Contenido projects.js...</code></pre>
-        </div>
-        
-        <!-- Contact Tab Content -->
-        <div class="tab-content h-100" id="contact">
-          <pre class="h-100 m-0 p-3"><code class="language-javascript">// Contenido contact.html...</code></pre>
-        </div>
-
-
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">{ tuNombre }</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Mis proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contáctame</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="toggleIdioma()">
+              <img src="https://flagcdn.com/w40/es.png" id="flag-icon" alt="Bandera idioma" style="width: 24px;">
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <!-- ============ DESIGN INTERFACE ============ -->
-    <!-- Hidden by default, activated via JavaScript -->
-    <div class="design-interface" style="display:none;">
-      <!-- Design content will be loaded here -->
+  <header>
+    <p id="saludo">Hola <span style="font-size: 1.5rem;">👋🏼</span>, soy</p>
+    <h1><span class="aurora-text">Tu Nombre</span></h1>
+    <p id="rol" style="font-size: 1.2rem;">Software Developeres</p>
+    <div>
+      <a href="#contacto" class="btn btn-custom" id="btn-contacto"><i class="fa-regular fa-paper-plane"></i> Contáctame</a>
+      <a href="#" class="btn btn-custom" id="btn-cv"><i class="fa-solid fa-download"></i> Descargar CV</a>
     </div>
-  </div>
+  </header>
 
-  <!-- JavaScript Libraries -->
-  <!-- Bootstrap Bundle with Popper -->
+  <section id="sobre-mi">
+    <div class="sobre-mi-texto" id="sobre-mi-texto">
+      <h2>Sobre mí</h2>
+      <div class="sobre-mi-texto" id="sobre-mi-texto">
+        <p>Software Developer, apasionado por el desarrollo Frontend ♥️. Me encanta crear sitios web que brindan una experiencia de usuario única y satisfactoria.</p>
+        <p>Soy autodidacta, responsable y comprometido con mi trabajo. Siempre estoy aprendiendo nuevas tecnologías para mejorar mis habilidades.</p>
+        <p>¿Tienes alguna pregunta? <span class="highlight-contacto">¡Contáctame!</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <div class="container">
+      <h2>Mis proyectos</h2>
+      <p>Lista de proyectos destacados, links a GitHub o demostraciones.</p>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <h2>Contáctame</h2>
+      <p>Formulario o datos de contacto: email, redes, etc.</p>
+    </div>
+  </section>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JavaScript -->
-  <script src="js/script.js"></script>
 </body>
 </html>

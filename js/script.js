@@ -1,92 +1,95 @@
-/**
- * Portfolio Theme Switcher and Tab Manager
- * Handles theme switching between code and design views
- * Manages tab navigation within the code editor interface
- */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // DOM Elements
-  const app = document.getElementById('app');
-  const btnDesignToggle = document.getElementById('btn-design-toggle');
-  const codeTheme = document.getElementById('code-theme');
-  const designTheme = document.getElementById('design-theme');
-  const navbarCollapse = document.getElementById('editorTabs');
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
 
-  /**
-   * Switches between code and design themes
-   * @param {string} theme - Theme to switch to ('code' or 'design')
-   */
-  function switchTheme(theme) {
-    const codeInterface = document.querySelector('.code-interface');
-    const designInterface = document.querySelector('.design-interface');
-    
-    if (theme === 'design') {
-      // Switch to design theme
-      codeInterface.style.display = 'none';
-      designInterface.style.display = 'block';
-      designTheme.disabled = false;
-      codeTheme.disabled = true;
-      btnDesignToggle.innerHTML = '<i class="fas fa-code me-1"></i>Versión Código';
-    } else {
-      // Switch to code theme
-      designInterface.style.display = 'none';
-      codeInterface.style.display = 'flex';
-      codeTheme.disabled = false;
-      designTheme.disabled = true;
-      btnDesignToggle.innerHTML = '<i class="fas fa-palette me-1"></i>Versión Diseño';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.7 + 0.2
+      });
     }
-  }
 
-  /**
-   * Switches between editor tabs
-   * @param {string} tabId - ID of the tab to activate
-   */
-  function switchTab(tabId) {
-    // Hide all tab contents
-    document.querySelectorAll('.tab-content').forEach(content => {
-      content.classList.remove('active');
-    });
-    
-    // Show selected tab content
-    const activeContent = document.getElementById(tabId);
-    if (activeContent) {
-      activeContent.classList.add('active');
-    }
-    
-    // Update active tab
-    document.querySelectorAll('.tab, .nav-link').forEach(tab => {
-      tab.classList.remove('active');
-      if (tab.getAttribute('data-tab') === tabId) {
-        tab.classList.add('active');
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+
+        star.y -= star.speed;
+
+        if (star.y < 0) {
+          star.y = canvas.height;
+          star.x = Math.random() * canvas.width;
+        }
       }
-    });
-    
-    // Close mobile menu if open
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-      new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
+
+      requestAnimationFrame(animateStars);
     }
-  }
 
-  // Event Listeners
+    animateStars();
 
-  // Theme toggle button
-  btnDesignToggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    const currentMode = document.querySelector('.code-interface').style.display === 'none' 
-      ? 'code' 
-      : 'design';
-    switchTheme(currentMode);
-  });
-
-  // Tab navigation (for both desktop tabs and mobile nav-links)
-  document.querySelectorAll('.tab[data-tab], .nav-link[data-tab]').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      e.preventDefault();
-      const tabId = tab.getAttribute('data-tab');
-      switchTab(tabId);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-  });
 
-  // Initialize default tab
-  switchTab('home');
-});
+    function toggleIdioma() {
+      const flag = document.getElementById('flag-icon');
+      const actual = flag.src.includes('es.png') ? 'es' : 'en';
+      const nuevo = actual === 'es' ? 'en' : 'es';
+      flag.src = `https://flagcdn.com/w40/${nuevo}.png`;
+
+      const textos = {
+        es: {
+          saludo: "Hola 👋🏼, soy",
+          rol: "Software Developer",
+          btnContacto: "Contáctame",
+          btnCV: "Descargar CV",
+          sobreMi: "Sobre mí",
+          proyectos: "Mis proyectos",
+          contacto: "Contáctame"
+        },
+        en: {
+          saludo: "Hi 👋🏼, I'm",
+          rol: "Software Developer",
+          btnContacto: "Contact me",
+          btnCV: "Download CV",
+          sobreMi: "About me",
+          proyectos: "My projects",
+          contacto: "Contact"
+        }
+      };
+
+      const t = textos[nuevo];
+      document.getElementById("saludo").innerHTML = t.saludo;
+      document.getElementById("rol").textContent = t.rol;
+      document.getElementById("btn-contacto").innerHTML = `<i class='fa-regular fa-paper-plane'></i> ${t.btnContacto}`;
+      document.getElementById("btn-cv").innerHTML = `<i class='fa-solid fa-download'></i> ${t.btnCV}`;
+      document.querySelector("a[href='#sobre-mi']").textContent = t.sobreMi;
+      document.querySelector("a[href='#proyectos']").textContent = t.proyectos;
+      document.querySelector("a[href='#contacto']").textContent = t.contacto;
+      document.querySelector("#sobre-mi h2").textContent = t.sobreMi;
+      document.querySelector("#proyectos h2").textContent = t.proyectos;
+      document.querySelector("#contacto h2").textContent = t.contacto;
+    }
+
+      // Efecto spotlight (Sobre mí)
+      const texto = document.getElementById("sobre-mi-texto");
+      if (texto) { // Asegúrate de que el elemento existe
+        texto.addEventListener("mousemove", (e) => {
+          const rect = texto.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          texto.style.setProperty("--mouse-x", `${x}px`);
+          texto.style.setProperty("--mouse-y", `${y}px`);
+        });
+      }
