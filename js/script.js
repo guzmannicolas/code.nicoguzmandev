@@ -1,60 +1,86 @@
-// Estrellas animadas
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
+ <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
 
-let stars = [];
-let w, h;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-function resizeCanvas() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-  stars = Array.from({ length: 200 }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    radius: Math.random() * 1.5,
-    vx: (Math.random() - 0.5) * 0.5,
-    vy: (Math.random() - 0.5) * 0.5
-  }));
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.7 + 0.2
+      });
+    }
 
-function drawStars() {
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = "#ffffff";
-  stars.forEach(star => {
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fill();
-    star.x += star.vx;
-    star.y += star.vy;
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (star.x < 0 || star.x > w) star.vx *= -1;
-    if (star.y < 0 || star.y > h) star.vy *= -1;
-  });
-  requestAnimationFrame(drawStars);
-}
-drawStars();
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
 
-// Alternar idioma
-function toggleIdioma() {
-  const saludo = document.getElementById("saludo");
-  const rol = document.getElementById("rol");
-  const btnContacto = document.getElementById("btn-contacto");
-  const btnCV = document.getElementById("btn-cv");
-  const flagIcon = document.getElementById("flag-icon");
+        star.y -= star.speed;
 
-  if (saludo.innerText.includes("Hola")) {
-    saludo.innerText = "Hi 👋🏼, I'm";
-    rol.innerText = "Software Developer";
-    btnContacto.innerHTML = `<i class="fa-regular fa-paper-plane"></i> Contact me`;
-    btnCV.innerHTML = `<i class="fa-solid fa-download"></i> Download CV`;
-    flagIcon.src = "https://flagcdn.com/w40/gb.png";
-  } else {
-    saludo.innerText = "Hola 👋🏼, soy";
-    rol.innerText = "Software Developer";
-    btnContacto.innerHTML = `<i class="fa-regular fa-paper-plane"></i> Contáctame`;
-    btnCV.innerHTML = `<i class="fa-solid fa-download"></i> Descargar CV`;
-    flagIcon.src = "https://flagcdn.com/w40/es.png";
-  }
-}
+        if (star.y < 0) {
+          star.y = canvas.height;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    function toggleIdioma() {
+      const flag = document.getElementById('flag-icon');
+      const actual = flag.src.includes('es.png') ? 'es' : 'en';
+      const nuevo = actual === 'es' ? 'en' : 'es';
+      flag.src = `https://flagcdn.com/w40/${nuevo}.png`;
+
+      const textos = {
+        es: {
+          saludo: "Hola 👋🏼, soy",
+          rol: "Software Developer",
+          btnContacto: "Contáctame",
+          btnCV: "Descargar CV",
+          sobreMi: "Sobre mí",
+          proyectos: "Mis proyectos",
+          contacto: "Contáctame"
+        },
+        en: {
+          saludo: "Hi 👋🏼, I'm",
+          rol: "Software Developer",
+          btnContacto: "Contact me",
+          btnCV: "Download CV",
+          sobreMi: "About me",
+          proyectos: "My projects",
+          contacto: "Contact"
+        }
+      };
+
+      const t = textos[nuevo];
+      document.getElementById("saludo").innerHTML = t.saludo;
+      document.getElementById("rol").textContent = t.rol;
+      document.getElementById("btn-contacto").innerHTML = `<i class='fa-regular fa-paper-plane'></i> ${t.btnContacto}`;
+      document.getElementById("btn-cv").innerHTML = `<i class='fa-solid fa-download'></i> ${t.btnCV}`;
+      document.querySelector("a[href='#sobre-mi']").textContent = t.sobreMi;
+      document.querySelector("a[href='#proyectos']").textContent = t.proyectos;
+      document.querySelector("a[href='#contacto']").textContent = t.contacto;
+      document.querySelector("#sobre-mi h2").textContent = t.sobreMi;
+      document.querySelector("#proyectos h2").textContent = t.proyectos;
+      document.querySelector("#contacto h2").textContent = t.contacto;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
