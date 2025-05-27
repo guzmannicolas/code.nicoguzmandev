@@ -1,4 +1,4 @@
-<script>
+
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
 
@@ -81,4 +81,3 @@
       document.querySelector("#proyectos h2").textContent = t.proyectos;
       document.querySelector("#contacto h2").textContent = t.contacto;
     }
-  </script>
