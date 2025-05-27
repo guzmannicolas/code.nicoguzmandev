@@ -1,78 +1,95 @@
-/* Fondo oscuro tipo IDE */
+/* Estilos generales */
+body {
+  font-family: 'Fira Code', monospace;
+  color: #d4d4d4;
+  overflow: hidden;
+}
+
+/* Editor de código */
 .code-interface {
   background-color: #1e1e1e;
-  color: #d4d4d4;
-  font-family: 'Fira Code', monospace;
-  padding: 20px;
-  border-radius: 8px;
   height: 100%;
 }
 
 /* Barra de pestañas */
-.editor-tabs {
-  display: flex;
-  background: #252526;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.nav-tabs {
+  border-bottom: none;
 }
 
-.tab {
-  padding: 10px 15px;
-  background: #2d2d2d;
+.nav-tabs .nav-link {
   color: #858585;
-  cursor: pointer;
-  border-right: 1px solid #1e1e1e;
+  background-color: #252526;
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
-.tab.active {
-  background: #1e1e1e;
+.nav-tabs .nav-link.active {
   color: #d4d4d4;
+  background-color: #1e1e1e;
   border-top: 2px solid #569cd6;
 }
 
 /* Contenido del editor */
 .editor-content {
-  background: #1e1e1e;
-  padding: 15px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  background-color: #1e1e1e;
 }
 
+pre {
+  background-color: transparent !important;
+  border: none;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Colores de sintaxis */
+.string {
+  color: #ce9178;
+}
+
+/* Botón de cambio de tema */
+#btn-design-toggle {
+  color: #569cd6 !important;
+}
+
+#btn-design-toggle:hover {
+  color: #4ec9b0 !important;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .nav-tabs .nav-link {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  pre {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
+
+
+/* Asegura que solo el contenido activo sea visible */
 .tab-content {
   display: none;
+  height: calc(100vh - 50px); /* Ajusta según tu barra de pestañas */
+  overflow: auto;
 }
 
 .tab-content.active {
   display: block;
 }
 
-/* Sintaxis coloreada */
-.string {
-  color: #ce9178; /* Color naranja para strings */
-}
-
-.keyword {
-  color: #569cd6; /* Color azul para keywords */
-}
-
-.comment {
-  color: #6a9955; /* Color verde para comentarios */
-}
-
-/* Estilo para el botón derecho */
-.editor-tabs {
-  display: flex;
-  position: relative; /* Para posicionar el botón derecho */
-}
-
-.tab-right {
-  margin-left: auto; /* Empuja el botón a la derecha */
-  background-color: #252526;
-  color: #569cd6; /* Azul similar al resaltado de código */
-  border-left: 1px solid #1e1e1e; /* Separador visual */
-}
-
-.tab-right:hover {
-  background-color: #2d2d2d;
-  color: #4ec9b0; /* Verde-azulado al hover */
+/* Estilo para pestañas activas */
+.nav-link.active {
+  background-color: #1e1e1e !important;
+  color: #569cd6 !important;
+  border-left: 3px solid #569cd6 !important;
 }
