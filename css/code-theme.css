@@ -1,79 +1,176 @@
-/* Estilos generales */
+/**
+ * Code Theme Styles
+ * Styling for the code editor interface theme
+ * Includes responsive design for mobile devices
+ */
+
+/* ============ BASE STYLES ============ */
+
+/**
+ * Global body styles
+ * Sets up the foundation for the code editor interface
+ */
 body {
-  font-family: 'Fira Code', monospace;
-  color: #d4d4d4;
-  overflow: hidden;
+  font-family: 'Fira Code', monospace;  /* Monospace font for code-like appearance */
+  color: #d4d4d4;                      /* Light gray text for better contrast */
+  overflow: hidden;                    /* Prevent scrolling on body */
 }
 
-/* Editor de código */
+/* ============ EDITOR CONTAINER ============ */
+
+/**
+ * Main code interface container
+ * Creates the dark IDE-like background
+ */
 .code-interface {
-  background-color: #1e1e1e;
-  height: 100%;
+  background-color: #1e1e1e;           /* Dark background similar to VS Code */
+  height: 100%;                        /* Full height container */
 }
 
-/* Barra de pestañas */
-.nav-tabs {
-  border-bottom: none;
-}
+/* ============ EDITOR CONTENT ============ */
 
-.nav-tabs .nav-link {
-  color: #858585;
-  background-color: #252526;
-  border: none;
-  border-radius: 0;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.nav-tabs .nav-link.active {
-  color: #d4d4d4;
-  background-color: #1e1e1e;
-  border-top: 2px solid #569cd6;
-}
-
-/* Contenido del editor */
+/**
+ * Editor content area
+ * Contains all the code display sections
+ */
 .editor-content {
-  background: #1e1e1e;
-  padding: 15px;
-  border-bottom-left-radius: 8px;
+  background: #1e1e1e;                 /* Consistent dark background */
+  padding: 15px;                       /* Comfortable spacing */
+  border-bottom-left-radius: 8px;      /* Rounded bottom corners */
   border-bottom-right-radius: 8px;
 }
 
+/**
+ * Tab content containers
+ * Only active tab is visible
+ */
 .tab-content {
-  display: none;
+  display: none;                       /* Hide all tabs by default */
 }
 
 .tab-content.active {
-  display: block;
+  display: block;                      /* Show only active tab */
 }
 
-/* Sintaxis coloreada */
-.string {
-  color: #ce9178; /* Color naranja para strings */
-}
+/* ============ TAB BAR ============ */
 
-.keyword {
-  color: #569cd6; /* Color azul para keywords */
-}
-
-.comment {
-  color: #6a9955; /* Color verde para comentarios */
-}
-
-/* Estilo para el botón derecho */
+/**
+ * Tab navigation container
+ * Horizontal list of file tabs
+ */
 .editor-tabs {
   display: flex;
-  position: relative; /* Para posicionar el botón derecho */
+  position: relative;                  /* For positioning right-aligned items */
 }
 
+/**
+ * Individual tab styles
+ */
+.nav-tabs {
+  border-bottom: none;                 /* Remove default Bootstrap border */
+}
+
+.nav-tabs .nav-link {
+  color: #858585;                      /* Inactive tab text color */
+  background-color: #252526;           /* Slightly lighter than editor bg */
+  border: none;                        /* Remove default borders */
+  border-radius: 0;                    /* Square edges for IDE look */
+  padding: 0.5rem 1rem;                /* Comfortable click area */
+  font-size: 0.9rem;                   /* Appropriate code font size */
+}
+
+/**
+ * Active tab state
+ */
+.nav-tabs .nav-link.active {
+  color: #d4d4d4;                      /* Bright text for active tab */
+  background-color: #1e1e1e;           /* Matches editor background */
+  border-top: 2px solid #569cd6;       /* Blue accent line */
+}
+
+/* ============ RIGHT-ALIGNED ITEMS ============ */
+
+/**
+ * Theme toggle button (right side)
+ */
 .tab-right {
-  margin-left: auto; /* Empuja el botón a la derecha */
-  background-color: #252526;
-  color: #569cd6; /* Azul similar al resaltado de código */
-  border-left: 1px solid #1e1e1e; /* Separador visual */
+  margin-left: auto;                   /* Push to far right */
+  background-color: #252526;           /* Match tab bar */
+  color: #569cd6;                      /* Blue accent color */
+  border-left: 1px solid #1e1e1e;      /* Visual separator */
 }
 
 .tab-right:hover {
-  background-color: #2d2d2d;
-  color: #4ec9b0; /* Verde-azulado al hover */
+  background-color: #2d2d2d;           /* Slightly lighter on hover */
+  color: #4ec9b0;                      /* Teal color for hover state */
+}
+
+/* ============ SYNTAX HIGHLIGHTING ============ */
+
+/**
+ * Code syntax highlighting colors
+ * Similar to VS Code's default theme
+ */
+.string {
+  color: #ce9178;                      /* Orange for strings */
+}
+
+.keyword {
+  color: #569cd6;                      /* Blue for keywords */
+}
+
+.comment {
+  color: #6a9955;                      /* Green for comments */
+}
+
+/* ============ MOBILE RESPONSIVE STYLES ============ */
+
+/**
+ * Mobile navigation styles
+ * Activated below 992px screen width
+ */
+@media (max-width: 992px) {
+  /* Navbar container */
+  .editor-navbar {
+    padding: 0;                        /* Remove default padding */
+  }
+  
+  /* Hamburger menu button */
+  .navbar-toggler {
+    border: none;                      /* Remove default border */
+    padding: 0.5rem;                   /* Comfortable touch target */
+    margin-right: 0.5rem;              /* Spacing from edge */
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;                  /* Remove focus outline */
+  }
+  
+  /* Tab bar becomes vertical menu */
+  .editor-tabs {
+    flex-direction: column;            /* Stack tabs vertically */
+    background-color: #252526;         /* Dark background */
+    padding: 0.5rem 0;                 /* Vertical spacing */
+  }
+  
+  /* Individual tabs in mobile */
+  .tab {
+    padding: 0.75rem 1rem;             /* Comfortable touch targets */
+    border-left: 3px solid transparent; /* Prepare for active state */
+    border-bottom: 1px solid #333;     /* Separator between items */
+  }
+  
+  /* Active tab in mobile */
+  .tab.active {
+    border-top: none;                  /* Remove desktop active indicator */
+    border-left: 3px solid #569cd6;    /* Blue accent on left */
+  }
+  
+  /* Theme toggle in mobile */
+  .tab-right {
+    margin-left: 0;                    /* Reset desktop positioning */
+    margin-top: 0.5rem;                /* Space from last tab */
+    border-top: 1px solid #444;        /* Visual separator */
+    padding-top: 0.75rem;              /* Additional spacing */
+  }
 }
