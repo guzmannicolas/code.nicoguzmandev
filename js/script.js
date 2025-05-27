@@ -1,53 +1,69 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
+  // Elementos del DOM
+  const app = document.getElementById('app');
   const btnCode = document.getElementById('btn-code');
   const btnDesign = document.getElementById('btn-design');
-  const codeInterface = document.querySelector('.code-interface');
-  const designInterface = document.querySelector('.design-interface');
-  const app = document.getElementById('app');
+  const btnDesignToggle = document.getElementById('btn-design-toggle');
+  const codeTheme = document.getElementById('code-theme');
+  const designTheme = document.getElementById('design-theme');
 
-  // Alternar entre temas
-document.getElementById('btn-code').addEventListener('click', () => {
-  document.getElementById('design-theme').disabled = true;
-  document.getElementById('code-theme').disabled = false;
-});
+  // Función para cambiar de tema
+  function switchTheme(theme) {
+    if (theme === 'design') {
+      // Cambiar a modo diseño
+      app.classList.replace('code-mode', 'design-mode');
+      designTheme.disabled = false;
+      codeTheme.disabled = true;
+      btnDesignToggle.textContent = 'Versión Código';
+      
+      // Actualizar botones (si existen)
+      if (btnCode && btnDesign) {
+        btnCode.classList.remove('active');
+        btnDesign.classList.add('active');
+      }
+    } else {
+      // Cambiar a modo código
+      app.classList.replace('design-mode', 'code-mode');
+      codeTheme.disabled = false;
+      designTheme.disabled = true;
+      btnDesignToggle.textContent = 'Versión Diseño';
+      
+      // Actualizar botones (si existen)
+      if (btnCode && btnDesign) {
+        btnCode.classList.add('active');
+        btnDesign.classList.remove('active');
+      }
+    }
+  }
 
-document.getElementById('btn-design').addEventListener('click', () => {
-  document.getElementById('code-theme').disabled = true;
-  document.getElementById('design-theme').disabled = false;
-});
+  // Event listeners para botones de tema
+  if (btnDesignToggle) {
+    btnDesignToggle.addEventListener('click', () => {
+      const currentMode = app.classList.contains('code-mode') ? 'design' : 'code';
+      switchTheme(currentMode);
+    });
+  }
 
-  btnCode.addEventListener('click', () => {
-    app.classList.remove('design-mode');
-    app.classList.add('code-mode');
-    codeInterface.style.display = 'block';
-    designInterface.style.display = 'none';
-    btnCode.classList.add('active');
-    btnDesign.classList.remove('active');
-  });
+  if (btnCode && btnDesign) {
+    btnCode.addEventListener('click', () => switchTheme('code'));
+    btnDesign.addEventListener('click', () => switchTheme('design'));
+  }
 
-  btnDesign.addEventListener('click', () => {
-    app.classList.remove('code-mode');
-    app.classList.add('design-mode');
-    codeInterface.style.display = 'none';
-    designInterface.style.display = 'block';
-    btnDesign.classList.add('active');
-    btnCode.classList.remove('active');
-  });
-});
-
-// Cambio de pestañas en el editor
-document.querySelectorAll('.editor-tabs .tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    // Remover clase 'active' de todas las pestañas y contenidos
-    document.querySelectorAll('.editor-tabs .tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    
-    // Agregar 'active' a la pestaña clickeada
-    tab.classList.add('active');
-    
-    // Mostrar el contenido correspondiente
-    const tabId = tab.getAttribute('data-tab');
-    document.getElementById(tabId).classList.add('active');
+  // Cambio de pestañas en el editor
+  document.querySelectorAll('.editor-tabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remover clase 'active' de todas las pestañas y contenidos
+      document.querySelectorAll('.editor-tabs .tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      // Agregar 'active' a la pestaña clickeada
+      tab.classList.add('active');
+      
+      // Mostrar el contenido correspondiente
+      const tabId = tab.getAttribute('data-tab');
+      if (tabId) {
+        document.getElementById(tabId).classList.add('active');
+      }
+    });
   });
 });
