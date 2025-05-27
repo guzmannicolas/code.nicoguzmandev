@@ -67,4 +67,65 @@
     100% {
       background-position: 0% 50%;
     }
+     }
+    /* Efecto Aurora al hacer hover en los links del menú */
+    .navbar .nav-link:hover {
+        background: linear-gradient(270deg, #00f5d4, #00bbf9, #8338ec, #ff006e, #fb5607, #ffbe0b);
+        background-size: 1200% 1200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: aurora 10s ease infinite;
+        font-weight: bold; /* Opcional: resalta el texto */
+    }
+    .navbar .nav-link {
+    transition: all 0.3s ease; /* Transición suave al hacer hover */
+}
+
+
+
+
+
+/* Efecto Spotlight Aurora (Verde) */
+.sobre-mi-texto {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding: 20px;
+  overflow: hidden; /* Oculta el exceso del gradiente */
+}
+
+.sobre-mi-texto::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(0, 245, 212, 0.8),  #00f5d4 (verde-azulado)
+    rgba(0, 187, 249, 0.6),  #00bbf9 (azul claro)
+    transparent 60%
+  );
+  pointer-events: none; /* Permite interactuar con el texto */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sobre-mi-texto:hover::before {
+  opacity: 1;
+}
+
+.sobre-mi-texto p {
+  position: relative; /* Asegura que el texto esté sobre el gradiente */
+  z-index: 1;
+  margin-bottom: 1.5rem;
+  color: white; /* Color base del texto */
+}
+
+.highlight-contacto {
+  font-weight: bold;
 }

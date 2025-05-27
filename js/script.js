@@ -81,3 +81,15 @@
       document.querySelector("#proyectos h2").textContent = t.proyectos;
       document.querySelector("#contacto h2").textContent = t.contacto;
     }
+
+
+        // Efecto spotlight que sigue al mouse (Aurora verde)
+         const texto = document.getElementById("sobre-mi-texto");
+
+     texto.addEventListener("mousemove", (e) => {
+      const rect = texto.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      texto.style.setProperty("--mouse-x", `${x}px`);
+      texto.style.setProperty("--mouse-y", `${y}px`);
+    });
