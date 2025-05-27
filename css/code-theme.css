@@ -58,3 +58,21 @@
 .comment {
   color: #6a9955; /* Color verde para comentarios */
 }
+
+/* Estilo para el botón derecho */
+.editor-tabs {
+  display: flex;
+  position: relative; /* Para posicionar el botón derecho */
+}
+
+.tab-right {
+  margin-left: auto; /* Empuja el botón a la derecha */
+  background-color: #252526;
+  color: #569cd6; /* Azul similar al resaltado de código */
+  border-left: 1px solid #1e1e1e; /* Separador visual */
+}
+
+.tab-right:hover {
+  background-color: #2d2d2d;
+  color: #4ec9b0; /* Verde-azulado al hover */
+}
