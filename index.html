@@ -1,15 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Nico Guzman</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <script src="js/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Dual Mode</title>
+  <!-- CSS se cargará dinámicamente -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Estilos BASE (comunes a ambas interfaces) -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Estilos para el tema CÓDIGO -->
+  <link rel="stylesheet" href="css/code-theme.css" id="code-theme">
+  
+  <!-- Estilos para el tema DISEÑO (los ocultamos inicialmente) -->
+  <link rel="stylesheet" href="css/design-theme.css" id="design-theme" disabled>
 </head>
-<body>
 
+
+<body>
+  <!-- Contenedor principal -->
+  <div id="app" class="code-mode"> <!-- Inicia en "modo código" -->
+    
+    <!-- Botones de alternancia -->
+    <div class="switcher">
+      <button id="btn-code" class="active">Versión Código</button>
+      <button id="btn-design">Versión Diseño</button>
+    </div>
+
+    <!-- Contenido para MODO CÓDIGO -->
+    <div class="code-interface">
+                <!-- Barra de pestañas superior (como un IDE) -->
+                <div class="editor-tabs">
+                  <div class="tab active" data-tab="about">about-me.js</div>
+                  <div class="tab" data-tab="projects">projects.js</div>
+                  <div class="tab" data-tab="contact">contact.html</div>
+                </div>
+
+                <!-- Contenido del "editor" -->
+                <div class="editor-content">
+                  <!-- Pestaña "about-me.js" (visible por defecto) -->
+                  <div class="tab-content active" id="about">
+                    <pre><code class="language-javascript">// Davide Simone
+                > Front-end developer
+
+                // my number
+                const telephoneNum = <span class="string">"392 86 08 006"</span>;
+
+                // my e-mail
+                const email = <span class="string">"davide_simone1996@proton.me"</span>;
+
+                // you can also see it on my Github page
+                const githubLink = <span class="string">"https://github.com/daveinthahood"</span>;
+
+                // you can also see my project on Behance
+                const behanceLink = <span class="string">"https://www.behance.net/davidefemale"</span>;
+
+                // you can check my Linkedin Page
+                const linkedinPage = <span class="string">"https://www.linkedin.com/ln/davide-simone-a2833619a/"</span>;</code></pre>
+                  </div>
+
+                  <!-- Pestaña "projects.js" -->
+                  <div class="tab-content" id="projects">
+                    <pre><code class="language-javascript">// My Projects
+                const projects = [
+                  {
+                    name: <span class="string">"Portfolio Dual"</span>,
+                    tech: [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JavaScript"</span>],
+                    link: <span class="string">"#"</span>
+                  },
+                  {
+                    name: <span class="string">"E-commerce"</span>,
+                    tech: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>],
+                    link: <span class="string">"#"</span>
+                  }
+                ];</code></pre>
+                  </div>
+
+                  <!-- Pestaña "contact.html" -->
+                  <div class="tab-content" id="contact">
+                    <pre><code class="language-html">&lt;!-- Contact Form --&gt;
+                &lt;form id="contact-form"&gt;
+                  &lt;input type="text" placeholder="Your Name"&gt;
+                  &lt;input type="email" placeholder="Your Email"&gt;
+                  &lt;textarea placeholder="Your Message"&gt;&lt;/textarea&gt;
+                  &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+                &lt;/form&gt;</code></pre>
+                  </div>
+                </div>
+    </div>
+
+    <!-- Contenido para MODO DISEÑO -->
+    <div class="design-interface" style="display:none;">
+      <!-- Aquí irá tu portfolio estilo Behance -->
+      <div class="gallery">
+        <div class="project-card">
+          <img src="proyecto1.jpg" alt="Proyecto 1">
+          <h3>Landing Page</h3>
+        </div>
+        <div class="project-card">
+          <img src="proyecto2.jpg" alt="Proyecto 2">
+          <h3>E-commerce</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
