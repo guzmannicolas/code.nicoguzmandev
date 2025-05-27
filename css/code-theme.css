@@ -8,6 +8,13 @@
   height: 100%;
 }
 
+body {
+  background-color: #1e1e1e; /* Fondo negro */
+  min-height: 100vh; /* Altura mínima de 100% del viewport */
+  margin: 0;
+  padding: 0;
+}
+
 /* Barra de pestañas */
 .editor-tabs {
   display: flex;
