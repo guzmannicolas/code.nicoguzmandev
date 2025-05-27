@@ -1,115 +1,139 @@
 /**
- * Code Theme Styles
- * Styling for the code editor interface theme
- * Includes responsive design for mobile devices
+ * CODE THEME STYLES
+ * ================
+ * Styles for the code editor interface theme
+ * Includes responsive design patterns for all devices
+ * 
+ * Organized by:
+ * 1. Base styles
+ * 2. Editor structure
+ * 3. Tab navigation
+ * 4. Syntax highlighting
+ * 5. Responsive behaviors
  */
 
-/* ============ BASE STYLES ============ */
+/* ==================== */
+/* 1. BASE STYLES */
+/* ==================== */
 
 /**
- * Global body styles
- * Sets up the foundation for the code editor interface
+ * Global document styling
+ * Sets foundation for code editor appearance
  */
 body {
-  font-family: 'Fira Code', monospace;  /* Monospace font for code-like appearance */
-  color: #d4d4d4;                      /* Light gray text for better contrast */
-  overflow: hidden;                    /* Prevent scrolling on body */
+  font-family: 'Fira Code', monospace;  /* Monospaced font for code aesthetic */
+  color: #d4d4d4;                      /* Light text for dark theme contrast */
+  overflow: hidden;                    /* Disable body scrolling */
+  background-color: #1e1e1e;           /* Dark canvas for editor */
+  margin: 0;                           /* Remove default margin */
+  height: 100vh;                       /* Full viewport height */
 }
 
-/* ============ EDITOR CONTAINER ============ */
+/* ==================== */
+/* 2. EDITOR STRUCTURE */
+/* ==================== */
 
 /**
- * Main code interface container
- * Creates the dark IDE-like background
+ * Main editor container
+ * Wraps all code interface components
  */
 .code-interface {
-  background-color: #1e1e1e;           /* Dark background similar to VS Code */
-  height: 100%;                        /* Full height container */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;                       /* Full viewport height */
+  background-color: #1e1e1e;           /* Matches VS Code dark theme */
 }
 
-/* ============ EDITOR CONTENT ============ */
-
 /**
- * Editor content area
- * Contains all the code display sections
+ * Content area for editor tabs
+ * Contains all code display panels
  */
 .editor-content {
-  background: #1e1e1e;                 /* Consistent dark background */
-  padding: 15px;                       /* Comfortable spacing */
-  border-bottom-left-radius: 8px;      /* Rounded bottom corners */
-  border-bottom-right-radius: 8px;
+  flex-grow: 1;                        /* Take remaining vertical space */
+  background-color: #1e1e1e;
+  padding: 15px;
+  overflow-y: auto;                    /* Enable vertical scrolling */
 }
 
 /**
  * Tab content containers
- * Only active tab is visible
+ * Visibility controlled by active class
  */
 .tab-content {
-  display: none;                       /* Hide all tabs by default */
+  display: none;                       /* Hidden by default */
+  height: 100%;                        /* Full height of container */
 }
 
 .tab-content.active {
-  display: block;                      /* Show only active tab */
+  display: block;                      /* Only active tab visible */
 }
 
-/* ============ TAB BAR ============ */
+/* ==================== */
+/* 3. TAB NAVIGATION */
+/* ==================== */
 
 /**
- * Tab navigation container
- * Horizontal list of file tabs
+ * Navigation bar container
+ * Holds both desktop tabs and mobile menu
+ */
+.editor-navbar {
+  background-color: #252526;           /* Slightly lighter than editor */
+  padding: 0;                          /* Remove default padding */
+}
+
+/**
+ * Desktop tabs container
+ * Horizontal layout for larger screens
  */
 .editor-tabs {
   display: flex;
-  position: relative;                  /* For positioning right-aligned items */
+  position: relative;
 }
 
 /**
- * Individual tab styles
+ * Individual tab styling
+ * Applies to both desktop and mobile
  */
-.nav-tabs {
-  border-bottom: none;                 /* Remove default Bootstrap border */
-}
-
-.nav-tabs .nav-link {
-  color: #858585;                      /* Inactive tab text color */
-  background-color: #252526;           /* Slightly lighter than editor bg */
-  border: none;                        /* Remove default borders */
-  border-radius: 0;                    /* Square edges for IDE look */
-  padding: 0.5rem 1rem;                /* Comfortable click area */
-  font-size: 0.9rem;                   /* Appropriate code font size */
+.tab {
+  color: #858585;
+  background-color: #252526;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border: none;
+  transition: all 0.2s ease;
 }
 
 /**
  * Active tab state
+ * Visual indicator for current view
  */
-.nav-tabs .nav-link.active {
-  color: #d4d4d4;                      /* Bright text for active tab */
-  background-color: #1e1e1e;           /* Matches editor background */
-  border-top: 2px solid #569cd6;       /* Blue accent line */
+.tab.active {
+  color: #d4d4d4;
+  background-color: #1e1e1e;
+  border-top: 2px solid #569cd6;       /* Blue accent for active tab */
 }
 
-/* ============ RIGHT-ALIGNED ITEMS ============ */
-
 /**
- * Theme toggle button (right side)
+ * Theme toggle button (far right)
+ * Special styling for design/code switcher
  */
 .tab-right {
   margin-left: auto;                   /* Push to far right */
-  background-color: #252526;           /* Match tab bar */
-  color: #569cd6;                      /* Blue accent color */
-  border-left: 1px solid #1e1e1e;      /* Visual separator */
+  color: #569cd6 !important;           /* Blue accent color */
 }
 
 .tab-right:hover {
-  background-color: #2d2d2d;           /* Slightly lighter on hover */
-  color: #4ec9b0;                      /* Teal color for hover state */
+  color: #4ec9b0 !important;           /* Teal on hover */
 }
 
-/* ============ SYNTAX HIGHLIGHTING ============ */
+/* ==================== */
+/* 4. SYNTAX HIGHLIGHTING */
+/* ==================== */
 
 /**
- * Code syntax highlighting colors
- * Similar to VS Code's default theme
+ * Code syntax color scheme
+ * Mirroring VS Code default dark theme
  */
 .string {
   color: #ce9178;                      /* Orange for strings */
@@ -123,54 +147,69 @@ body {
   color: #6a9955;                      /* Green for comments */
 }
 
-/* ============ MOBILE RESPONSIVE STYLES ============ */
+/* ==================== */
+/* 5. RESPONSIVE BEHAVIORS */
+/* ==================== */
 
 /**
- * Mobile navigation styles
- * Activated below 992px screen width
+ * Mobile-specific styles
+ * Activated below 992px viewport width
  */
 @media (max-width: 992px) {
-  /* Navbar container */
-  .editor-navbar {
-    padding: 0;                        /* Remove default padding */
-  }
-  
-  /* Hamburger menu button */
+  /* Mobile menu button */
   .navbar-toggler {
-    border: none;                      /* Remove default border */
-    padding: 0.5rem;                   /* Comfortable touch target */
-    margin-right: 0.5rem;              /* Spacing from edge */
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
   }
   
-  .navbar-toggler:focus {
-    box-shadow: none;                  /* Remove focus outline */
-  }
-  
-  /* Tab bar becomes vertical menu */
+  /* Mobile menu container */
   .editor-tabs {
-    flex-direction: column;            /* Stack tabs vertically */
-    background-color: #252526;         /* Dark background */
-    padding: 0.5rem 0;                 /* Vertical spacing */
+    flex-direction: column;            /* Vertical stack */
+    background-color: #252526;
+    padding: 0.5rem 0;
   }
   
-  /* Individual tabs in mobile */
+  /* Mobile tab items */
   .tab {
-    padding: 0.75rem 1rem;             /* Comfortable touch targets */
-    border-left: 3px solid transparent; /* Prepare for active state */
-    border-bottom: 1px solid #333;     /* Separator between items */
+    width: 100%;
+    padding: 0.75rem 1.5rem;          /* Larger touch targets */
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid #333;     /* Item separator */
   }
   
   /* Active tab in mobile */
   .tab.active {
-    border-top: none;                  /* Remove desktop active indicator */
-    border-left: 3px solid #569cd6;    /* Blue accent on left */
+    border-top: none;
+    border-left: 3px solid #569cd6;    /* Left border accent */
   }
   
   /* Theme toggle in mobile */
   .tab-right {
-    margin-left: 0;                    /* Reset desktop positioning */
-    margin-top: 0.5rem;                /* Space from last tab */
-    border-top: 1px solid #444;        /* Visual separator */
-    padding-top: 0.75rem;              /* Additional spacing */
+    margin-left: 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid #444;        /* Visual separation */
+    padding-top: 0.75rem;
+  }
+  
+  /* Bootstrap override for mobile menu */
+  .navbar-collapse {
+    background-color: #252526;         /* Match editor style */
+  }
+}
+
+/**
+ * Desktop-specific styles
+ * Activated above 992px viewport width
+ */
+@media (min-width: 992px) {
+  /* Hide mobile menu button */
+  .navbar-toggler {
+    display: none;
+  }
+  
+  /* Ensure desktop menu is visible */
+  .editor-tabs.desktop-tabs {
+    display: flex !important;
   }
 }
