@@ -88,5 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize default tab
-  switchTab('about');
+  switchTab('home');
 });

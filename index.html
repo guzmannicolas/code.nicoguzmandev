@@ -31,39 +31,69 @@
       
       <!-- Editor Navigation Tabs -->
       <!-- Desktop Version -->
-              <!-- Single navigation bar (responsive) -->
-              <nav class="navbar navbar-dark bg-black px-3 py-0 editor-navbar">
-                <div class="container-fluid p-0">
-                  <!-- Hamburguer button (only on móvil) -->
-                  <button class="navbar-toggler d-lg-none" type="button" 
-                          data-bs-toggle="collapse" data-bs-target="#editorTabs">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  
-                  <!-- Tab container (visible on  desktop) -->
-                  <div class="d-none d-lg-flex">
-                    <div class="editor-tabs">
-                      <div class="tab active" data-tab="about">about-me.js</div>
-                      <div class="tab" data-tab="projects">projects.js</div>
-                      <div class="tab" data-tab="contact">contact.html</div>
-                      <div class="tab tab-right" id="btn-design-toggle">Versión Diseño</div>
-                    </div>
-                  </div>
-                  
-                  <!-- Colapsable container (for móvil) -->
-                  <div class="collapse navbar-collapse d-lg-none" id="editorTabs">
-                    <div class="editor-tabs">
-                      <div class="tab active" data-tab="about">about-me.js</div>
-                      <div class="tab" data-tab="projects">projects.js</div>
-                      <div class="tab" data-tab="contact">contact.html</div>
-                      <div class="tab tab-right" id="btn-design-toggle">Versión Diseño</div>
-                    </div>
-                  </div>
-                </div>
-              </nav>
+      <nav class="navbar navbar-dark bg-black px-3 py-0 d-none d-lg-block">
+        <div class="container-fluid p-0">
+          <ul class="nav nav-tabs border-0 w-100">
+
+            <li class="nav-item">
+              <a class="nav-link active" href="#" data-tab="home">home.js</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-tab="about">about-me.js</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-tab="projects">projects.js</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-tab="contact">contact.html</a>
+            </li>
+
+            
+            <li class="nav-item ms-auto">
+              <a class="nav-link text-primary" href="#" id="btn-design-toggle">
+                <i class="fas fa-palette me-1"></i>Versión Diseño
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Mobile Version with Hamburger Menu -->
+      <nav class="navbar navbar-dark bg-black px-3 py-0 editor-navbar">
+        <div class="container-fluid p-0">
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button class="navbar-toggler ms-auto d-lg-none" type="button" 
+                  data-bs-toggle="collapse" data-bs-target="#editorTabs">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <!-- Collapsible Tab Container -->
+          <div class="collapse navbar-collapse" id="editorTabs">
+            <div class="editor-tabs">
+              <div class="tab active" data-tab="home">home.js</div>
+              <div class="tab " data-tab="about">about-me.js</div>
+              <div class="tab" data-tab="projects">projects.js</div>
+              <div class="tab" data-tab="contact">contact.html</div>
+              <div class="tab tab-right" id="btn-design-toggle">Versión Diseño</div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <!-- Editor Content Area -->
       <div class="editor-content flex-grow-1 overflow-auto">
+        
+
+        <!-- Home Tab Content -->
+        <div class="tab-content h-100" id="home">
+          <pre class="h-100 m-0 p-3"><code class="language-javascript">// Contenido Home.js...</code></pre>
+        </div>
+
         <!-- About Me Tab Content -->
         <div class="tab-content h-100 active" id="about">
           <pre class="h-100 m-0 p-3"><code class="language-javascript">
@@ -95,6 +125,8 @@ const linkedinPage = <span class="string">"https://www.linkedin.com/ln/davide-si
         <div class="tab-content h-100" id="contact">
           <pre class="h-100 m-0 p-3"><code class="language-javascript">// Contenido contact.html...</code></pre>
         </div>
+
+
       </div>
     </div>
 
